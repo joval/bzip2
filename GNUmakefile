@@ -1,9 +1,9 @@
 Default: all
 
-TOP=../../..
+TOP=..
 
-ifndef JAVA_HOME
-    JAVA_HOME=$(TOP)/tools/jdk1.6.0_26
+ifeq (x, x$(JAVA_HOME))
+    $(error "Please set the JAVA_HOME environment variable.")
 endif
 
 ifeq (Windows, $(findstring Windows,$(OS)))
@@ -49,7 +49,7 @@ clean:
 	rm -rf $(BUILD)
 
 install: bzip2.jar
-	cp $< $(TOP)/repositories/jOVAL-Commercial/components/engine/rsrc/lib
+	cp $< $(TOP)/jOVAL-Commercial/components/engine/rsrc/lib
 
 classes: classdirs $(CLASS_FILES)
 
